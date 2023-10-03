@@ -1,5 +1,5 @@
 const express = require("express");
-const getCharacter = require("./controller");
+const { getCharacter, getFilms } = require("./controller");
 
 const characterRouter = express.Router().get('/', async (req, res) => {
     const characters = await getCharacter();
@@ -7,12 +7,12 @@ const characterRouter = express.Router().get('/', async (req, res) => {
 });
 
 const filmsRouter = express.Router().get('/', async (req, res) => {
-    // const characters = await getCharacter(); 
-    // res.status(200).send(characters)
+    const films = await getFilms(); 
+    res.status(200).send(films)
 });
 
 const planetsRouter = express.Router().get('/', async (req, res) => {
-    // const characters = await getCharacter(); 
+    const characters = await getCharacter(); 
     // res.status(200).send(characters)
 });
 
@@ -36,6 +36,12 @@ const filmsIdCharactersRouter = express.Router().get('/', async (req, res) => {
     // res.status(200).send(characters)
 });
 
+const filmsIdPlanetsRouter = express.Router().get('/', async (req, res) => {
+    // const characters = await getCharacter(); 
+    // res.status(200).send(characters)
+});
+
+
 const filmsCharactersIdFilmsRouter = express.Router().get('/', async (req, res) => {
     // const characters = await getCharacter(); 
     // res.status(200).send(characters)
@@ -51,4 +57,4 @@ const planetsIdCharactersRouter = express.Router().get('/', async (req, res) => 
     // res.status(200).send(characters)
 });
 
-module.exports = { characterRouter, filmsRouter, planetsRouter, charactersIdRouter, filmsIdRouter, planetsIdRouter, filmsIdCharactersRouter, filmsCharactersIdFilmsRouter, planetIdFilmsRouter, planetsIdCharactersRouter }; 
+module.exports = { filmsIdPlanetsRouter, characterRouter, filmsRouter, planetsRouter, charactersIdRouter, filmsIdRouter, planetsIdRouter, filmsIdCharactersRouter, filmsCharactersIdFilmsRouter, planetIdFilmsRouter, planetsIdCharactersRouter }; 
