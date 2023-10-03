@@ -1,5 +1,5 @@
 const express = require("express");
-const { getCharacter, getFilms } = require("./controller");
+const { getCharacter, getFilms, getCharactersId } = require("./controller");
 
 const characterRouter = express.Router().get('/', async (req, res) => {
     const characters = await getCharacter();
@@ -12,13 +12,13 @@ const filmsRouter = express.Router().get('/', async (req, res) => {
 });
 
 const planetsRouter = express.Router().get('/', async (req, res) => {
-    const characters = await getCharacter(); 
-    // res.status(200).send(characters)
+    const planets = await getPlanets(); 
+    res.status(200).send(planets)
 });
 
-const charactersIdRouter = express.Router().get('/', async (req, res) => {
-    // const characters = await getCharacter(); 
-    // res.status(200).send(characters)
+const charactersIdRouter = express.Router({ mergeParams: true }).get('/', async (req, res) => {
+    const character = await getCharactersId(req.params.id); 
+    res.status(200).send(character)
 });
 
 const filmsIdRouter = express.Router().get('/', async (req, res) => {
