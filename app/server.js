@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const { getCharacter, characterRouter } = require("./controller");
+const characterRouter = require("./routes");
 
 app.get("/api/character", async (req, res) => {
   const character = await getCharacter();
